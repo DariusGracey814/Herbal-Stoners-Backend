@@ -5,7 +5,6 @@ const PORT = process.env.PORT || 4000;
 
 const app = express();
 app.use(cors());
-app.use(express.static("../build"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
