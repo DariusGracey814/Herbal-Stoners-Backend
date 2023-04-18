@@ -18,9 +18,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const stripeRouter = require("./routes/stripe");
 app.use("/", stripeRouter);
 
-// Send user cart to stripe - Create stripe checkout session
-app.post("/checkout", async (req, res) => {});
-
 server.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
