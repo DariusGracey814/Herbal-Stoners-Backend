@@ -3,7 +3,6 @@ const serverless = require("serverless-http");
 const cors = require("cors");
 
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
-const PORT = process.env.PORT || 4000;
 
 const app = express();
 const router = express.Router();
@@ -12,6 +11,10 @@ app.use(cors());
 app.use(express.static("../dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.get("/test", (req, res) => {
+  res.send("Testing");
+});
 
 // Send user cart to stripe - Create stripe checkout session
 app.post("/checkout", async (req, res) => {
@@ -50,5 +53,5 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-app.use("./netlify/function/server", router);
+app.use("/.netlify/functions/api", router);
 module.exports.handler = serverless(app);
