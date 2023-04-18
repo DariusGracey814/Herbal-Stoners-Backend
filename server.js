@@ -1,11 +1,12 @@
+const http = require("http");
 const express = require("express")();
 const cors = require("cors");
 
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
 const app = express();
+const server = http.createServer(app);
 const PORT = process.env.PORT || 4000;
-const router = express.Router();
 
 app.use(cors());
 app.use(express.static("dist"));
@@ -53,6 +54,6 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
 });
