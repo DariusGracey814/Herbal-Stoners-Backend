@@ -27,8 +27,9 @@ app.post("/checkout", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items: stripeFormattedProducts,
       mode: "payment",
-      success_url: "http://localhost:3000/herbal-stoners/purchase-successful",
-      cancel_url: "http://localhost:3000/menu",
+      success_url:
+        "https://herbal-stoners-app.web.app/herbal-stoners/purchase-successful",
+      cancel_url: "https://herbal-stoners-app.web.app/menu",
     });
 
     // Send user stripe checout session
