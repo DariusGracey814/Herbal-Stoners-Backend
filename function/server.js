@@ -1,14 +1,19 @@
 const express = require("express");
+const serverless = require("serverless-http");
 const cors = require("cors");
+
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const PORT = process.env.PORT || 4000;
 
 const app = express();
+const router = express.Router();
+
 app.use(cors());
 app.use(express.static("../dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Send user cart to stripe - Create stripe checkout session
 app.post("/checkout", async (req, res) => {
   try {
     const items = req.body.customerCart;
@@ -45,6 +50,5 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port: ${PORT}`);
-});
+app.use("./netlify/function/server", router);
+module.exports.handler = serverless(app);
