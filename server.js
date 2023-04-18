@@ -1,14 +1,15 @@
+require("dotenv").config();
 const express = require("express");
-const serverless = require("serverless-http");
 const cors = require("cors");
 
 const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 
 const app = express();
+const PORT = process.env.PORT || 4000;
 const router = express.Router();
 
 app.use(cors());
-app.use(express.static("/dist"));
+app.use(express.static("dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -53,5 +54,6 @@ app.post("/checkout", async (req, res) => {
   }
 });
 
-app.use("/.netlify/functions/api", router);
-module.exports.handler = serverless(app);
+app.listen(PORT, () => {
+  console.log(`Server is running on port: ${PORT}`);
+});
