@@ -35,6 +35,8 @@ stripeRouter.post("/checkout", async (req, res) => {
     });
 
     // Send user stripe checout session
+    console.log(session.url);
+
     res.send(
       JSON.stringify({
         url: session.url,
