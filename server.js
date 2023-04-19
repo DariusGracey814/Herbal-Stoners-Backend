@@ -41,8 +41,6 @@ app.post("/checkout", async (req, res) => {
       });
     });
 
-    console.log(stripeFormattedProducts);
-
     // Initialize Stripe Checkout session
     const session = await stripe.checkout.sessions.create({
       line_items: stripeFormattedProducts,
@@ -53,15 +51,12 @@ app.post("/checkout", async (req, res) => {
       automatic_tax: { enabled: true },
     });
 
-    // Send user stripe checout session
-    // res.redirect(303, session.url);
+    // Send user stripe checkout session
     res.send(
       JSON.stringify({
         url: session.url,
       })
     );
-
-    // res.json({});
 
     // Error
   } catch (error) {
