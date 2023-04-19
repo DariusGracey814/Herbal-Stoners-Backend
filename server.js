@@ -47,8 +47,8 @@ app.post("/checkout", async (req, res) => {
       line_items: stripeFormattedProducts,
       mode: "payment",
       success_url:
-        "herbal-stoner-frontend.web.app/herbal-stoners/purchase-successful",
-      cancel_url: "herbal-stoner-frontend.web.app/menu",
+        "https://herbal-stoner-backend.web.app/herbal-stoners/purchase-successful",
+      cancel_url: "https://herbal-stoner-backend.web.app/menu",
       automatic_tax: { enabled: true },
     });
 
