@@ -3,11 +3,12 @@ require("dotenv").config();
 const stripe = require("stripe")(`${process.env.STRIPE_API_KEY}`);
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const corsOptions = require("./config/corsOptions");
 
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(cors(corsOptions));
 // app.use(express.static("dist"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
