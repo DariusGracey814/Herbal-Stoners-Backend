@@ -12,7 +12,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://herbal-stoners-app.onrender.com",
-      "herbal-stoner-frontend.web.app",
+      "https://herbal-stoner-backend.web.app",
     ],
   })
 );
