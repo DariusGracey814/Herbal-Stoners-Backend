@@ -54,7 +54,14 @@ app.post("/checkout", async (req, res) => {
     });
 
     // Send user stripe checout session
-    res.redirect(303, session.url);
+    // res.redirect(303, session.url);
+    res.send(
+      JSON.stringify({
+        url: session.url,
+      })
+    );
+
+    // res.json({});
 
     // Error
   } catch (error) {
