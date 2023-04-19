@@ -12,6 +12,8 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://herbal-stoners-app.onrender.com",
+      "https://herbal-stoners-app.onrender.com/herbal-stoners/purchase-successful",
+      "https://herbal-stoners-app.onrender.com/menu",
     ],
   })
 );
