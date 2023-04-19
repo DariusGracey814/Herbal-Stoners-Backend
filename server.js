@@ -44,16 +44,11 @@ app.post("/checkout", async (req, res) => {
       success_url:
         "https://herbal-stoner-frontend.web.app/herbal-stoners/purchase-successful",
       cancel_url: "https://herbal-stoner-frontend.web.app/menu",
+      automatic_tax: { enabled: true },
     });
 
     // Send user stripe checout session
-    console.log(session.url);
-
-    res.send(
-      JSON.stringify({
-        url: session.url,
-      })
-    );
+    res.redirect(303, session.url);
 
     // Error
   } catch (error) {
