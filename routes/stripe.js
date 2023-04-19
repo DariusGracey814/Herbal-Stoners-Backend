@@ -13,7 +13,6 @@ stripeRouter.get("/test", (req, res) => {
 stripeRouter.post("/checkout", async (req, res) => {
   try {
     const items = req.body.customerCart;
-    console.log(items);
     let stripeFormattedProducts = [];
 
     // Loop through and add product data to stripe item
@@ -23,6 +22,8 @@ stripeRouter.post("/checkout", async (req, res) => {
         quantity: product.quantity,
       });
     });
+
+    console.log(stripeFormattedProducts);
 
     // Initialize Stripe Checkout session
     const session = await stripe.checkout.sessions.create({
