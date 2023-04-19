@@ -1,4 +1,5 @@
 const express = require("express");
+const stripe = require("stripe")(process.env.STRIPE_API_KEY);
 const stripeRouter = express.Router();
 
 stripeRouter.get("/", (req, res) => {
@@ -28,8 +29,8 @@ stripeRouter.post("/checkout", async (req, res) => {
       line_items: stripeFormattedProducts,
       mode: "payment",
       success_url:
-        "https://herbal-stoners-app.web.app/herbal-stoners/purchase-successful",
-      cancel_url: "https://herbal-stoners-app.web.app/menu",
+        "https://herbal-stoner-frontend.web.app/herbal-stoners/purchase-successful",
+      cancel_url: "https://herbal-stoner-frontend.web.app/menu",
     });
 
     // Send user stripe checout session
