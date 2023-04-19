@@ -1,5 +1,4 @@
 const express = require("express");
-require("dotenv").config();
 const stripe = require("stripe")(
   "sk_test_51MtGBHG6XH5BieNneklrLXSxlxY8grENegtuJKQGWjQr4q5qLC9VkWroSVDvTn32Wi57WYwQw50aJlYaNzR0Rtp000N7LOeEqh"
 );
@@ -8,7 +7,14 @@ const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [
+      "http://localhost:3000",
+      "https://herbal-stoners-app.onrender.com",
+    ],
+  })
+);
 // app.use(express.static("dist"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
