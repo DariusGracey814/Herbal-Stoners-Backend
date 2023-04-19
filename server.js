@@ -12,6 +12,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "https://herbal-stoners-app.onrender.com",
+      "herbal-stoner-frontend.web.app",
     ],
   })
 );
@@ -45,8 +46,9 @@ app.post("/checkout", async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       line_items: stripeFormattedProducts,
       mode: "payment",
-      success_url: "https://herbal-stoners-app.onrender.com",
-      cancel_url: "https://herbal-stoners-app.onrender.com",
+      success_url:
+        "herbal-stoner-frontend.web.app/herbal-stoners/purchase-successful",
+      cancel_url: "herbal-stoner-frontend.web.app/menu",
       automatic_tax: { enabled: true },
     });
 
